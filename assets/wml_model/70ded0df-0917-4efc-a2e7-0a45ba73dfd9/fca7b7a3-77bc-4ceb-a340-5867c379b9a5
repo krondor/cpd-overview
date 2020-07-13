@@ -1,0 +1,36 @@
+{
+  "doc_type": "pipeline",
+  "version": "2.0",
+  "primary_pipeline": "hpo_c_output_Pipeline1",
+  "pipelines": [
+    {
+      "id": "hpo_c_output_Pipeline1",
+      "type": "execution_node",
+      "runtime_ref": "hybrid",
+      "op": "wml-http-score",
+      "nodes": [
+        {
+          "id": "0",
+          "op": "wml-http-score",
+          "type": "execution_node",
+          "parameters": {}
+        }
+      ]
+    }
+  ],
+  "runtimes": [
+    {
+      "app_data": {
+        "wml_data": {
+          "hardware_spec": {
+            "id": "c076e82c-b2a7-4d20-9c0f-1f0c2fdf5a24",
+            "name": "M"
+          }
+        }
+      },
+      "id": "autoai",
+      "name": "auto_ai.kb",
+      "version": "v.0.1.413.0.9"
+    }
+  ]
+}
