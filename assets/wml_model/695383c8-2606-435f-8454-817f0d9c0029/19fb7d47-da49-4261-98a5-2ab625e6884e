@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?><PMML version="4.3" xmlns="http://www.dmg.org/PMML-4_3" xmlns:xsi="http://www.w3.org/2001/XMLSchema"><Header copyright="(C) Copyright IBM Corp. 1994, 2019">
+<Application name="IBM SPSS Modeler Server" version="18.2.1.0"/>
+<Timestamp>Mon Jul 13 13:20:07 2020</Timestamp>
+</Header><DataDictionary numberOfFields="6">
+<DataField dataType="double" displayName="Age" name="Age" optype="continuous"/>
+<DataField dataType="string" displayName="BP" name="BP" optype="categorical">
+<Value value="HIGH"/>
+<Value value="LOW"/>
+<Value value="NORMAL"/>
+</DataField>
+<DataField dataType="string" displayName="Cholesterol" name="Cholesterol" optype="categorical">
+<Extension extender="spss.com" name="flagTypeTrueValue" value="NORMAL"/>
+<Value value="HIGH"/>
+<Value value="NORMAL"/>
+</DataField>
+<DataField dataType="string" displayName="Drug" name="Drug" optype="categorical">
+<Value value="drugA"/>
+<Value value="drugB"/>
+<Value value="drugC"/>
+<Value value="drugX"/>
+<Value value="drugY"/>
+</DataField>
+<DataField dataType="double" displayName="Na_to_K" name="Na_to_K" optype="continuous"/>
+<DataField dataType="string" displayName="Sex" name="Sex" optype="categorical">
+<Extension extender="spss.com" name="flagTypeTrueValue" value="M"/>
+<Value value="F"/>
+<Value value="M"/>
+</DataField>
+</DataDictionary><TransformationDictionary>
+<DerivedField dataType="double" name="AgeNorm" optype="continuous">
+<NormContinuous field="Age">
+<LinearNorm norm="-1.74805305365714" orig="15"/>
+<LinearNorm norm="1.75398871767635" orig="74"/>
+</NormContinuous>
+</DerivedField>
+<DerivedField dataType="double" name="BPValue0" optype="categorical">
+<NormDiscrete field="BP" value="HIGH"/>
+</DerivedField>
+<DerivedField dataType="double" name="BPValue1" optype="categorical">
+<NormDiscrete field="BP" value="LOW"/>
+</DerivedField>
+<DerivedField dataType="double" name="BPValue2" optype="categorical">
+<NormDiscrete field="BP" value="NORMAL"/>
+</DerivedField>
+<DerivedField dataType="double" name="CholesterolValue0" optype="categorical">
+<NormDiscrete field="Cholesterol" value="HIGH"/>
+</DerivedField>
+<DerivedField dataType="double" name="CholesterolValue1" optype="categorical">
+<NormDiscrete field="Cholesterol" value="NORMAL"/>
+</DerivedField>
+<DerivedField dataType="double" name="DrugValue0" optype="categorical">
+<NormDiscrete field="Drug" value="drugA"/>
+</DerivedField>
+<DerivedField dataType="double" name="DrugValue1" optype="categorical">
+<NormDiscrete field="Drug" value="drugB"/>
+</DerivedField>
+<DerivedField dataType="double" name="DrugValue2" optype="categorical">
+<NormDiscrete field="Drug" value="drugC"/>
+</DerivedField>
+<DerivedField dataType="double" name="DrugValue3" optype="categorical">
+<NormDiscrete field="Drug" value="drugX"/>
+</DerivedField>
+<DerivedField dataType="double" name="DrugValue4" optype="categorical">
+<NormDiscrete field="Drug" value="drugY"/>
+</DerivedField>
+<DerivedField dataType="double" name="Na_to_KNorm" optype="continuous">
+<NormContinuous field="Na_to_K">
+<LinearNorm norm="-1.37785491858097" orig="6.26872462024365"/>
+<LinearNorm norm="2.80226476681855" orig="37.1880514242501"/>
+</NormContinuous>
+</DerivedField>
+<DerivedField dataType="double" name="SexValue0" optype="categorical">
+<NormDiscrete field="Sex" value="F"/>
+</DerivedField>
+<DerivedField dataType="double" name="SexValue1" optype="categorical">
+<NormDiscrete field="Sex" value="M"/>
+</DerivedField>
+</TransformationDictionary><NeuralNetwork activationFunction="tanh" algorithmName="MLP" functionName="classification"><Extension extender="spss.com" name="modelID" value="0"/><MiningSchema>
+<MiningField importance="0.152519062049001" name="Age"/>
+<MiningField importance="0.192001981968793" name="BP"/>
+<MiningField importance="0.0941167287774776" name="Cholesterol"/>
+<MiningField importance="0.528650775897923" name="Na_to_K"/>
+<MiningField importance="0.0327114513068058" name="Sex"/>
+<MiningField name="Drug" usageType="predicted"/>
+</MiningSchema><Output>
+<OutputField dataType="string" feature="predictedValue" name="$N-Drug" targetField="Drug"/>
+<OutputField dataType="double" feature="probability" name="$NP-Drug" targetField="Drug"/>
+<OutputField dataType="double" feature="probability" name="$NP-drugA" targetField="Drug" value="drugA"/>
+<OutputField dataType="double" feature="probability" name="$NP-drugB" targetField="Drug" value="drugB"/>
+<OutputField dataType="double" feature="probability" name="$NP-drugC" targetField="Drug" value="drugC"/>
+<OutputField dataType="double" feature="probability" name="$NP-drugX" targetField="Drug" value="drugX"/>
+<OutputField dataType="double" feature="probability" name="$NP-drugY" targetField="Drug" value="drugY"/>
+</Output><ModelExplanation><PredictiveModelQuality dataUsage="training" targetField="Drug"><ConfusionMatrix><ClassLabels><Array n="5" type="string">"drugA" "drugB" "drugC" "drugX" "drugY"</Array></ClassLabels><Matrix><Array n="5" type="int">23 0 0 0 0</Array><Array n="5" type="int">0 16 0 0 0</Array><Array n="5" type="int">0 0 16 0 0</Array><Array n="5" type="int">0 0 0 54 0</Array><Array n="5" type="int">0 0 0 0 91</Array></Matrix></ConfusionMatrix><LiftData targetFieldDisplayValue="drugA" targetFieldValue="drugA"><ModelLiftGraph><LiftGraph><XCoordinates><Array n="21" type="int">3 13 23 33 43 53 63 73 83 93 103 113 123 133 143 153 163 173 183 193 200</Array></XCoordinates><YCoordinates><Array n="21" type="int">0 0 0 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 7</Array></YCoordinates><BoundaryValues><Array n="21" type="real">0.995748253119377 0.991685977262394 0.892245490391997 0.00904536369080659 0.0043747217234267 0.00328640001758784 0.000868435041170315 0.000502953705416855 0.000373011728634217 0.000199192164464542 0.000120742207232762 2.83157493170722e-05 1.10722924177017e-05 3.63212890867494e-06 1.04967429468591e-06 2.39237492474417e-07 8.12546425947186e-08 1.10842398867872e-08 8.2460103907386e-10 4.80761376326013e-10 4.53555733494275e-10</Array></BoundaryValues><BoundaryValueMeans><Array n="21" type="real">0.996032957703442 0.994280447122029 0.962254250896067 0.0448218113763646 0.00647131347041126 0.00379464587451419 0.00135590376361653 0.000663161864578133 0.000422617175766907 0.000294688197970182 0.000172296109788734 5.85293606251465e-05 2.17776347023736e-05 6.83933649960144e-06 1.91423663927376e-06 5.46096845498751e-07 1.32729795743722e-07 3.0820952049456e-08 3.10694126394251e-09 5.78083893142779e-10 4.60923506628361e-10</Array></BoundaryValueMeans></LiftGraph></ModelLiftGraph></LiftData><LiftData targetFieldDisplayValue="drugB" targetFieldValue="drugB"><ModelLiftGraph><LiftGraph><XCoordinates><Array n="21" type="int">3 13 23 33 43 53 63 73 83 93 103 113 123 133 143 153 163 173 183 193 200</Array></XCoordinates><YCoordinates><Array n="21" type="int">3 10 4 5 2 6 10 10 10 10 10 10 10 10 10 10 10 10 10 10 7</Array></YCoordinates><BoundaryValues><Array n="21" type="real">0.995542750079347 0.950168189387082 0.0126202504980056 0.00491491281053078 0.00311644474559313 0.00101437593967656 0.00048764731605355 0.000121999133242952 3.68684315902885e-05 1.38262482495533e-05 7.69045883925923e-06 4.51407285523667e-06 3.3296389599972e-06 2.14268083547278e-06 1.22239514474472e-06 6.99153336356297e-07 4.56187282085479e-07 2.58190346626451e-07 1.98053541605606e-08 7.61735479430172e-09 2.54760432781397e-09</Array></BoundaryValues><BoundaryValueMeans><Array n="21" type="real">0.996041826879664 0.981282680316693 0.297529091480002 0.00720807476650203 0.00382779820243209 0.00236394033986676 0.000723118818266764 0.000327929220092274 5.81532634912687e-05 2.19761475047208e-05 8.98068250803531e-06 6.22427470063065e-06 4.04476827622497e-06 2.6321050182304e-06 1.76167055493936e-06 9.10483050793523e-07 5.06135537597145e-07 3.89942279314773e-07 9.87813342398055e-08 1.29297369761783e-08 4.33512503063018e-09</Array></BoundaryValueMeans></LiftGraph></ModelLiftGraph></LiftData><LiftData targetFieldDisplayValue="drugC" targetFieldValue="drugC"><ModelLiftGraph><LiftGraph><XCoordinates><Array n="21" type="int">3 13 23 33 43 53 63 73 83 93 103 113 123 133 143 153 163 173 183 193 200</Array></XCoordinates><YCoordinates><Array n="21" type="int">3 10 7 7 7 8 8 5 6 9 10 10 10 10 10 10 10 10 10 10 7</Array></YCoordinates><BoundaryValues><Array n="21" type="real">0.990031835779786 0.971893020158667 0.00336692075365028 0.00232728205333121 0.00132797084814468 0.00113893970482149 0.000993022553916815 0.000857186681734063 0.000574773742928422 0.000410969908035054 0.000169052776120016 3.50164534906259e-05 1.01343174833946e-05 1.40559051745273e-06 5.92696200400125e-07 1.57443995321519e-07 6.66117698957356e-08 2.67217380915683e-08 1.10178214184131e-08 8.57196724759842e-09 8.41664542636162e-09</Array></BoundaryValues><BoundaryValueMeans><Array n="21" type="real">0.990431153951216 0.983953474432063 0.326642961212271 0.00285958759549811 0.00152826247815732 0.00122712476823899 0.00105553000373462 0.000914750167942142 0.000713701244093565 0.00049527525379585 0.000249048653591225 7.85839854126991e-05 1.84212907746554e-05 3.40541971596527e-06 1.01149395127137e-06 3.23398421000483e-07 1.00421172468089e-07 4.83511726334429e-08 1.99790440457377e-08 9.44417833220366e-09 8.45607427094674e-09</Array></BoundaryValueMeans></LiftGraph></ModelLiftGraph></LiftData><LiftData targetFieldDisplayValue="drugX" targetFieldValue="drugX"><ModelLiftGraph><LiftGraph><XCoordinates><Array n="21" type="int">3 13 23 33 43 53 63 73 83 93 103 113 123 133 143 153 163 173 183 193 200</Array></XCoordinates><YCoordinates><Array n="21" type="int">3 10 10 10 10 10 9 10 10 6 7 7 9 4 5 10 10 10 10 10 7</Array></YCoordinates><BoundaryValues><Array n="21" type="real">0.999532800184324 0.998892258597955 0.998499273524367 0.998067729466571 0.995942534280662 0.819891291936653 0.0131003000156559 0.00859679246099865 0.00513802846883396 0.00184510451921677 0.0010821614072138 0.000299237401163921 4.59347595454528e-05 1.3707435492945e-05 1.09211988427722e-05 3.99196337474158e-06 2.63106176513227e-06 1.13829249470692e-06 1.05338401546059e-06 1.70975392211978e-07 2.57562999558462e-08</Array></BoundaryValues><BoundaryValueMeans><Array n="21" type="real">0.999596499211101 0.999281104679922 0.998718549696273 0.998361311569041 0.996881167631184 0.970609863743227 0.0957856357059453 0.010804736745597 0.00615770229980077 0.00299933808387857 0.00127620674041843 0.000589019896709074 0.000100086534465704 2.65617631659963e-05 1.17635981542286e-05 5.52800607768092e-06 3.14306558779369e-06 1.5680231822583e-06 1.07665357821818e-06 5.90803428560334e-07 7.51813465589558e-08</Array></BoundaryValueMeans></LiftGraph></ModelLiftGraph></LiftData><LiftData targetFieldDisplayValue="drugY" targetFieldValue="drugY"><ModelLiftGraph><LiftGraph><XCoordinates><Array n="21" type="int">3 13 23 33 43 53 63 73 83 93 103 113 123 133 143 153 163 173 183 193 200</Array></XCoordinates><YCoordinates><Array n="21" type="int">3 10 10 10 10 10 10 10 10 10 8 8 4 8 8 7 7 9 8 10 7</Array></YCoordinates><BoundaryValues><Array n="21" type="real">0.999999040776344 0.999998472315666 0.999997871227858 0.999995813663635 0.999993079468839 0.999949201419096 0.999689312483087 0.997752998925083 0.987659930410691 0.178480951210342 0.0117899808747967 0.000612237400606456 0.000165000044765207 2.89867164542544e-05 1.3160622359153e-05 8.63628769908774e-06 1.90895217573085e-06 6.39150192765704e-07 3.29727242810295e-07 1.44946773484778e-07 8.10445665892175e-08</Array></BoundaryValues><BoundaryValueMeans><Array n="21" type="real">0.999999161142358 0.999998565642568 0.99999822551455 0.99999714115521 0.999994566915207 0.99997470096566 0.999880903990489 0.998533544079369 0.992277012518382 0.773491169076994 0.0284947751280715 0.00298530076335821 0.000295505686377965 6.52422193489918e-05 1.94486329414333e-05 1.08294023694119e-05 4.67769664244093e-06 1.24340112136014e-06 4.6790286543965e-07 2.31557659525198e-07 1.10383068384962e-07</Array></BoundaryValueMeans></LiftGraph></ModelLiftGraph></LiftData></PredictiveModelQuality></ModelExplanation><NeuralInputs>
+<NeuralInput id="0">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="AgeNorm"/>
+</DerivedField>
+</NeuralInput>
+<NeuralInput id="1">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="BPValue0"/>
+</DerivedField>
+</NeuralInput>
+<NeuralInput id="2">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="BPValue1"/>
+</DerivedField>
+</NeuralInput>
+<NeuralInput id="3">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="BPValue2"/>
+</DerivedField>
+</NeuralInput>
+<NeuralInput id="4">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="CholesterolValue0"/>
+</DerivedField>
+</NeuralInput>
+<NeuralInput id="5">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="CholesterolValue1"/>
+</DerivedField>
+</NeuralInput>
+<NeuralInput id="6">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="Na_to_KNorm"/>
+</DerivedField>
+</NeuralInput>
+<NeuralInput id="7">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="SexValue0"/>
+</DerivedField>
+</NeuralInput>
+<NeuralInput id="8">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="SexValue1"/>
+</DerivedField>
+</NeuralInput>
+</NeuralInputs><NeuralLayer numberOfNeurons="7">
+<Neuron bias="0.303601411509794" id="9">
+<Con from="0" weight="0.284550664346767"/>
+<Con from="1" weight="-0.932369051217333"/>
+<Con from="2" weight="0.969334556090327"/>
+<Con from="3" weight="-1.06471963856733"/>
+<Con from="4" weight="1.01977202987439"/>
+<Con from="5" weight="-0.982943522332245"/>
+<Con from="6" weight="1.91399512044757"/>
+<Con from="7" weight="-0.0120744894433775"/>
+<Con from="8" weight="-0.111466714011224"/>
+</Neuron>
+<Neuron bias="0.0907921165631107" id="10">
+<Con from="0" weight="0.126465401439048"/>
+<Con from="1" weight="0.00779247351121837"/>
+<Con from="2" weight="-0.123517701733878"/>
+<Con from="3" weight="-0.520042398033747"/>
+<Con from="4" weight="-0.0834904539116478"/>
+<Con from="5" weight="-0.427424899197206"/>
+<Con from="6" weight="-2.30852622446448"/>
+<Con from="7" weight="-0.219519944167933"/>
+<Con from="8" weight="-0.663857742586593"/>
+</Neuron>
+<Neuron bias="0.24882100194622" id="11">
+<Con from="0" weight="-0.0140027453894166"/>
+<Con from="1" weight="0.348409472292743"/>
+<Con from="2" weight="0.283788275928476"/>
+<Con from="3" weight="0.267564573023001"/>
+<Con from="4" weight="-0.234899628258608"/>
+<Con from="5" weight="0.0953030891554078"/>
+<Con from="6" weight="3.22947014820153"/>
+<Con from="7" weight="0.343665052498679"/>
+<Con from="8" weight="0.496680270567773"/>
+</Neuron>
+<Neuron bias="-1.10885375106994" id="12">
+<Con from="0" weight="0.0627429237703471"/>
+<Con from="1" weight="1.56432623025585"/>
+<Con from="2" weight="-1.20907573834805"/>
+<Con from="3" weight="-1.56365128316084"/>
+<Con from="4" weight="0.124880455628399"/>
+<Con from="5" weight="-0.389912605687485"/>
+<Con from="6" weight="-1.22021233196891"/>
+<Con from="7" weight="-0.18214246371392"/>
+<Con from="8" weight="-0.474284493370955"/>
+</Neuron>
+<Neuron bias="-0.193847750707055" id="13">
+<Con from="0" weight="-0.120544262056062"/>
+<Con from="1" weight="-1.71811143042816"/>
+<Con from="2" weight="0.833792907807424"/>
+<Con from="3" weight="0.519406739671984"/>
+<Con from="4" weight="-0.524419107393122"/>
+<Con from="5" weight="-0.455122590074081"/>
+<Con from="6" weight="-2.5530528423524"/>
+<Con from="7" weight="-0.323523056212268"/>
+<Con from="8" weight="-0.746792036983255"/>
+</Neuron>
+<Neuron bias="0.540929284279821" id="14">
+<Con from="0" weight="0.17986816975414"/>
+<Con from="1" weight="-1.32535385191188"/>
+<Con from="2" weight="-0.0853724508579082"/>
+<Con from="3" weight="2.20968095060292"/>
+<Con from="4" weight="-0.88096510440504"/>
+<Con from="5" weight="1.22533053061166"/>
+<Con from="6" weight="1.08531704884738"/>
+<Con from="7" weight="0.475548100455318"/>
+<Con from="8" weight="0.204068608186209"/>
+</Neuron>
+<Neuron bias="-0.0532304098593278" id="15">
+<Con from="0" weight="2.80802422204575"/>
+<Con from="1" weight="-0.00451155287149992"/>
+<Con from="2" weight="-1.08944637778848"/>
+<Con from="3" weight="-0.242847407728913"/>
+<Con from="4" weight="-0.300353578016447"/>
+<Con from="5" weight="0.552155705010224"/>
+<Con from="6" weight="1.33371058212122"/>
+<Con from="7" weight="0.306933911418492"/>
+<Con from="8" weight="-0.427749706682347"/>
+</Neuron>
+</NeuralLayer><NeuralLayer activationFunction="identity" normalizationMethod="softmax" numberOfNeurons="5">
+<Neuron bias="-0.761418104102488" id="16">
+<Con from="9" weight="-1.16587389376694"/>
+<Con from="10" weight="0.616060035306081"/>
+<Con from="11" weight="-1.13835222076572"/>
+<Con from="12" weight="1.71505625407207"/>
+<Con from="13" weight="-0.921495006479661"/>
+<Con from="14" weight="-1.29449167412953"/>
+<Con from="15" weight="-2.51017475316406"/>
+</Neuron>
+<Neuron bias="-0.189639724374701" id="17">
+<Con from="9" weight="-0.981660132871116"/>
+<Con from="10" weight="0.51891905191392"/>
+<Con from="11" weight="-0.697319941508456"/>
+<Con from="12" weight="2.25804246696175"/>
+<Con from="13" weight="-0.875502671690856"/>
+<Con from="14" weight="-0.509170793558145"/>
+<Con from="15" weight="2.90747621634706"/>
+</Neuron>
+<Neuron bias="-0.6687875272001" id="18">
+<Con from="9" weight="1.43739175126212"/>
+<Con from="10" weight="1.3095718561898"/>
+<Con from="11" weight="-1.02684441729579"/>
+<Con from="12" weight="-0.716390287217928"/>
+<Con from="13" weight="1.98867940440143"/>
+<Con from="14" weight="-1.77264836163661"/>
+<Con from="15" weight="-0.746338678206088"/>
+</Neuron>
+<Neuron bias="-0.535277685024363" id="19">
+<Con from="9" weight="-1.56465403439106"/>
+<Con from="10" weight="-0.0207790817781049"/>
+<Con from="11" weight="-1.03301547645649"/>
+<Con from="12" weight="-2.24192854733475"/>
+<Con from="13" weight="1.93836367592007"/>
+<Con from="14" weight="2.69972686054599"/>
+<Con from="15" weight="-0.411386024225061"/>
+</Neuron>
+<Neuron bias="1.39805299850872" id="20">
+<Con from="9" weight="1.89338621811726"/>
+<Con from="10" weight="-2.42810434211818"/>
+<Con from="11" weight="2.87073121945218"/>
+<Con from="12" weight="-1.06385468204391"/>
+<Con from="13" weight="-2.88646282284373"/>
+<Con from="14" weight="0.427004095190357"/>
+<Con from="15" weight="0.270543501174344"/>
+</Neuron>
+</NeuralLayer><NeuralOutputs>
+<NeuralOutput outputNeuron="16">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="DrugValue0"/>
+</DerivedField>
+</NeuralOutput>
+<NeuralOutput outputNeuron="17">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="DrugValue1"/>
+</DerivedField>
+</NeuralOutput>
+<NeuralOutput outputNeuron="18">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="DrugValue2"/>
+</DerivedField>
+</NeuralOutput>
+<NeuralOutput outputNeuron="19">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="DrugValue3"/>
+</DerivedField>
+</NeuralOutput>
+<NeuralOutput outputNeuron="20">
+<DerivedField dataType="double" optype="continuous">
+<FieldRef field="DrugValue4"/>
+</DerivedField>
+</NeuralOutput>
+</NeuralOutputs></NeuralNetwork></PMML>
